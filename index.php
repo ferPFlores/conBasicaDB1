@@ -16,7 +16,24 @@
             <a href="formulario.php">Formulario</a>
         </li>
     </ul>
-    
+    <?php
+	require 'conexion.php';
+	$sql = "SELECT * FROM registros";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
+ 
+  // Configura los resultados como un arreglo asociativo
+  $stmt->setFetchMode(PDO::FETCH_ASSOC);
+  
+  // $stmt->fetchAll() Obtiene el arreglo asociativo
+foreach($stmt as $row) {
+   echo $row['id'] ."  " ;
+   echo $row['nombre']. " ";
+   echo $row['apellido'];
+   echo "<br>";
+  }
+	?>
+
 
 </body>
 </html>
